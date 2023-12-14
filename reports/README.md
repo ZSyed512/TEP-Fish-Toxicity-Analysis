@@ -10,6 +10,7 @@ https://archive.ics.uci.edu/dataset/504/qsar+fish+toxicity
 
 # Observations 
 I selected a dataset that was used to develop quantitative regression QSAR models to predict toxicity in the Fathead Minnow fish.The dataset contains 908 rows which represent 908 different chemicals that may have an effect on the fish. The target,  LC50 [-LOG(mol/L)], represents the concentration or amount of the chemical that has a toxic effect on the Fathead Minnow.
+
 The 6 features of the dataset were:
 1) CIC0 - Information Indices
 2) SM1_Dz(Z) - 2D Matrix based descriptors
@@ -40,7 +41,9 @@ In the next step, I was tasked with conducting data transformation and cleaning.
 
 
 # Linear Regression Modeling
-Before modeling the data, I had to scale the data to make sure all data points were relative to the same range and scale. First, I split the dataset into X- the features and y- the label. Then I instantiated a standard scaler object and fit X- the features into it to scale the feature data. I confirmed that the dataset was ready for modeling by using X.head(50) and observing the values in the dataset. Using train_test_split I split the dataset into training and test sets, specifying a 25% split for the test set. Furthermore, I instantiated a linear regression model object and fit the training data to the model. I also set y_pred to equal the predictions on the test set. With model.score I found the R^2 value for the model, which is 0.57. This tells us that 57% of the variance in the target, LC50 [-LOG(mol/L)], can be explained by the model. Finally, I plotted the points of the test set and the regression line through the test sets as well as the test vs the predictions and the residual plot.
+Before modeling the data, I had to scale the data to make sure all data points were relative to the same range and scale. First, I split the dataset into X- the features and y- the label. Then I instantiated a standard scaler object and fit X- the features into it to scale the feature data. I confirmed that the dataset was ready for modeling by using X.head(50) and observing the values in the dataset. 
+
+Using train_test_split I split the dataset into training and test sets, specifying a 25% split for the test set. Furthermore, I instantiated a linear regression model object and fit the training data to the model. I also set y_pred to equal the predictions on the test set. With model.score I found the R^2 value for the model, which is 0.57. This tells us that 57% of the variance in the target, LC50 [-LOG(mol/L)], can be explained by the model. Finally, I plotted the points of the test set and the regression line through the test sets as well as the test vs the predictions and the residual plot.
 
 I wanted to see if I could find a model that results in a better R^2 value, so I tried a ridge regression and lasso regression model. With a ridge regression model I got the same R^2 value of 0.57. Next, I tried a lasso regression model with the default alpha value of 1.0. This model resulted in an R^2 value that was less than 0. I also tried the lasso model with an alpha of 0.1 which resulted in 0.53 as an R^2. Although this was a fairly large value, I tried one more time with 0.01 and that resulted in an R^2 of 0.57, the same as the 2 other models. After trying all 3 models, I believe that the original linear regression model was the model most suited for this dataset
 
